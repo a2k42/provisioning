@@ -1,0 +1,7 @@
+---
+- name: No sudo password
+  become: true
+  ansible.builtin.copy:
+    src: 010_%sudo-nopasswd
+    dest: "/etc/sudoers.d/"
+    mode: "0731"

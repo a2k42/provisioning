@@ -1,0 +1,7 @@
+---
+- name: Update APT Cache
+  ansible.builtin.apt:
+    update_cache: true
+    autoclean: true
+    cache_valid_time: 43200 # 12 hours
+    upgrade: true

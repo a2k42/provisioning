@@ -1,0 +1,21 @@
+---
+- name: Common tasks
+  hosts:
+    - all
+
+  pre_tasks:
+    - name: Update APT
+      become: true
+      ansible.builtin.import_role:
+        name: a2k42.misc.update
+
+  roles:
+    - a2k42.misc.debug
+    - a2k42.security.firewall
+
+
+- name: Configure laptop
+  hosts: laptop
+
+  roles:
+    - a2k42.misc.debug

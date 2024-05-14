@@ -1,0 +1,12 @@
+{
+    "auto_install": [
+        {
+            "image": "/debian/debian-12.5.0-amd64-DVD-1.iso",
+            "template": [
+                "/ventoy/script/laptop-preseed.cfg"
+            ],
+            "autosel": 1,
+            "timeout": 30
+        }
+    ]
+}

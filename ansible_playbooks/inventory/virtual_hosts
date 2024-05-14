@@ -1,0 +1,14 @@
+[virtual]
+
+[virtual:children]
+# vservers
+vdesktops
+
+[vservers]
+debian-standard.local
+
+[vdesktops]
+debian-kde.local
+
+# [virtual:vars]
+# git_user_email=test@example.com

@@ -1,0 +1,42 @@
+# https://docs.ansible.com/ansible/latest/collections/community/general/ufw_module.html
+---
+- name: Become
+  become: true
+  block:
+    - name: Ensure UFW installed
+      ansible.builtin.apt:
+        name: ufw
+        state: present
+
+    - name: Set logging
+      community.general.ufw:
+        logging: 'on'
+      notify: Reload ufw
+
+    - name: Limit ssh
+      community.general.ufw:
+        rule: limit
+        port: ssh
+        proto: tcp
+      notify: Reload ufw
+
+    - name: Disable IP6
+      ansible.builtin.lineinfile:
+        dest: /etc/default/ufw
+        regexp: "^IPV6\\="
+        line: "IPV6={{ allow_ipv6 | default('no') }}"
+      notify: Reload ufw
+
+    - name: Configure default incoming/outgoing policy to deny
+      community.general.ufw:
+        direction: "{{ item.direction }}"
+        policy: "{{ item.policy }}"     # alias for default
+      with_items:
+        - { direction: outgoing, policy: allow }
+        - { direction: incoming, policy: deny }
+        - { direction: routed, policy: deny }
+      notify: Reload ufw
+
+    - name: Enable ufw
+      community.general.ufw:
+        state: enabled

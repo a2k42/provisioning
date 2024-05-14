@@ -1,0 +1,7 @@
+---
+- name: Show ansible_user
+  ansible.builtin.debug:
+    msg: "{{ ansible_user }}"
+- name: Show ansible_user_dir
+  ansible.builtin.debug:
+    msg: "{{ ansible_user_dir }}"
