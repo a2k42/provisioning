@@ -1,0 +1,42 @@
+API_VERSION = 2
+BOX_NAME = "debian/bookworm64"
+# BOX_NAME = "bento/ubuntu-23.04"
+SSH_PORT = 22
+
+Vagrant.configure(API_VERSION) do |config|
+    config.ssh.guest_port = SSH_PORT
+    config.vm.network "forwarded_port", id: "ssh", guest: SSH_PORT, host: 2222
+
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+
+    config.ssh.insert_key = false
+
+    # Let all VMs share an apt cache (not the host's)
+    # Check host firewall allows nfs
+    # config.vm.synced_folder "~/.cache/apt", "/var/cache/apt",
+    #     type: "nfs",
+    #     nfs_version: 4,
+    #     nfs_udp: false,
+    #     nfs_export: true    # true or configure /etc/exports manually
+
+    config.vm.provider "libvirt" do |libvirt|
+        libvirt.memory = 4096
+        libvirt.cpus = 4
+    end
+
+    # Configuration Management
+    config.vm.provision "ansible" do |ansible|
+        ansible.inventory_path = "hosts.ini"
+        ansible.playbook = "playbook.yaml"
+        ansible.compatibility_mode = "2.0"
+    end
+
+    # Server Template
+    config.vm.define "debian" do |debian|
+        debian.vm.box = BOX_NAME
+        debian.vm.hostname = "debian"       # access via debian.local?
+        debian.vm.network :private_network, ip: "192.168.60.51"
+    end
+end
+
+# mount.nfs: requested NFS version or transport protocol is not supported

@@ -1,4 +1,2 @@
 **/node_modules/
-**/.import/
-
-**/home/ansible_hosts
+**/.vagrant/
