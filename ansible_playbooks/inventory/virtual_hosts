@@ -1,11 +1,11 @@
 [virtual]
 
 [virtual:children]
-# vservers
+vservers
 vdesktops
 
 [vservers]
-debian-standard.local
+debian-base.local
 
 [vdesktops]
 debian-kde.local

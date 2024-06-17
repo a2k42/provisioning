@@ -12,6 +12,7 @@
   roles:
     - a2k42.misc.debug
     - a2k42.security.firewall
+    - a2k42.security.clamav
 
 
 - name: Configure laptop
