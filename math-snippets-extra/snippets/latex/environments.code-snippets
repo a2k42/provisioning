@@ -1,0 +1,19 @@
+{
+    "Environment - Begin Block": {
+        "prefix": "begin-block-environment",
+        "body": [
+            "\\begin{${1|align,array,enumerate,tabular,pmatrix,bmatrix,cases|}}",
+            "$0 \\\\\\\\",
+            "\\end{$1}"
+        ]
+    },
+    "Environment - Left Brace Array": {
+        "prefix": "left-brace-array",
+        "body": [
+            "\\left\\{ \\begin{array}{rcl}",
+            "$1 \\\\\\\\",
+            "$2 \\\\\\\\",
+            "\\end{array}\\right. $0"
+        ]
+    },
+}

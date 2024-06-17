@@ -1,0 +1,14 @@
+{
+    "Combinatorics - Combinatation": {
+        "prefix": "combination-formula-combinatorics",
+        "body": [
+            "{^nC_r} = \\binom{n}{r} = \\frac{n!}{(n-r)!r!} \\qquad 0 \\leq r \\leq n $0"
+        ]
+    },
+    "Combinatorics - Permutation": {
+        "prefix": "permutation-formula-combinatorics",
+        "body": [
+            "{^nP_k} = \\frac{n!}{(n-k)!} $0"
+        ]
+    },
+}

@@ -1,0 +1,41 @@
+{
+    "Linear Algebra - Homogeneous linear system": {
+        "prefix": "homogeneous-linear",
+        "body": [
+            "\\mathbf{Ax} = \\mathbf{0}"
+        ]
+    },
+    "Linear Algebra - Augmented Matrix": {
+        "prefix": "augment-matrix-linear",
+        "body": [
+            "[\\mathbf{$1} | \\mathbf{$2}]"
+        ]
+    },
+    "Linear Algebra - Inverse Identity": {
+        "prefix": "inverse-identity-matrix-linear",
+        "body": [
+            "\\mathbf{AA^{-1} = \\mathbf{A^{-1}A} = \\mathbf{I}}"
+        ]
+    },
+    "Linear Algebra - 3x3 Matrix": {
+        "prefix": "matrix-3x3-linear",
+        "body": [
+            "\\begin{bmatrix}",
+            "${1:1} & ${2:0} & ${3:0} \\\\\\\\",
+            "${4:0} & ${5:1} & ${6:0} \\\\\\\\",
+            "${7:0} & ${8:0} & ${9:1} \\\\\\\\",
+            "\\end{bmatrix}"
+        ]
+    },
+    "Linear Algebra - Characteristic Determinant": {
+        "prefix": "characteristic-determinant-linear",
+        "body": [
+            "\\mathrm{det}(\\lambda\\mathbf{I} - \\mathbf{A}) =",
+            "\\begin{vmatrix}",
+            "\\lambda - ${1:1} & ${2:0} & ${3:0} \\\\\\\\",
+            "${4:0} & \\lambda - ${5:1} & ${6:0} \\\\\\\\",
+            "${7:0} & ${8:0} & \\lambda - ${9:1} \\\\\\\\",
+            "\\end{vmatrix}"
+        ]
+    }
+}

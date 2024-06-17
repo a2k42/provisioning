@@ -1,0 +1,42 @@
+{
+	// Place your snippets for markdown here. Each snippet is defined under a snippet name and has a prefix, body and
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+	// same ids are connected.
+	"LaTeX - Inline Fraction": {
+		"prefix": "fraction, half, third, quarter",
+		"body": [
+			"\\textstyle \\frac{1}{${1|2,3,4,5,6,7,8,9,10|}} $0"
+		],
+		"description": "A half fraction"
+	},
+    "LaTeX - Vector": {
+        "prefix": "vector-bold",
+        "body": "\\vec{\\mathbf{$1}}",
+        "description": "Bold with arrow"
+	},
+    "LaTeX - Unit Vector (hat)": {
+        "prefix": "unit-hat-vec",
+        "body": [
+            "\\hat{\\mathbf{$1}}"
+        ]
+    },
+    "LaTeX - Delta Vector": {
+        "prefix": "delta-vector",
+        "body": [
+            "\\Delta{\\mathbf{\\vec{$1}}}"
+        ]
+    },
+    "LaTeX - Discontinuous Function": {
+        "prefix": "cases-discontinuous-fn",
+        "body": [
+            "${1:f(x)} =",
+            "\\begin{cases}",
+            "${2:0}, & \\text{for } ${3:x < 0}, \\\\\\\\",
+            "${4:x}, & \\text{for } ${5:0 \\leq x < 1}, \\\\\\\\",
+            "${6:1}, & \\text{for } ${7:x \\geq 1}, \\\\\\\\",
+            "\\end{cases} $0"
+        ],
+        "description": "Piecewise or discontinuous function"
+    }
+}

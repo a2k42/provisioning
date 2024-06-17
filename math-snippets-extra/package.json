@@ -1,0 +1,55 @@
+{
+    "name": "math-snippets-extra",
+    "displayName": "Math Snippets Extra",
+    "description": "Extends Math Snippets with extra equations and formulas",
+    "version": "0.1.0",
+    "engines": {
+        "vscode": "^1.84.0"
+    },
+    "categories": [
+        "Extension Packs",
+        "Snippets"
+    ],
+    "scripts": {
+        "load": "vsce package --allow-missing-repository --skip-license && code --install-extension math-snippets-extra-0.1.0.vsix"
+    },
+    "contributes": {
+        "snippets": [
+            {
+                "language": "latex",
+                "path": "./snippets/latex/calculus.code-snippets"
+            },
+            {
+                "language": "latex",
+                "path": "./snippets/latex/combinatorics.code-snippets"
+            },
+            {
+                "language": "latex",
+                "path": "./snippets/latex/environments.code-snippets"
+            },
+            {
+                "language": "latex",
+                "path": "./snippets/latex/foundation.code-snippets"
+            },
+            {
+                "language": "latex",
+                "path": "./snippets/latex/linear-algebra.code-snippets"
+            },
+            {
+                "language": "latex",
+                "path": "./snippets/latex/trigonometry.code-snippets"
+            },
+            {
+                "language": "latex",
+                "path": "./snippets/latex.code-snippets"
+            },
+            {
+                "language": "latex",
+                "path": "./snippets/font.code-snippets"
+            }
+        ]
+    },
+    "extensionPack": [
+        "thomanq.math-snippets"
+    ]
+}

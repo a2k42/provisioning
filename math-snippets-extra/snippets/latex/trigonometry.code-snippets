@@ -1,0 +1,26 @@
+{
+    "Trigonometry - Law of Sines": {
+        "prefix": "law-of-sines-trig",
+        "body": [
+            "\\frac{\\sin(A)}{a} = \\frac{\\sin(B)}{b} = \\frac{\\sin(C)}{c} $0"
+        ]
+    },
+    "Trigonometry - Law of Cosines": {
+        "prefix": "law-of-cosines-trig",
+        "body": [
+            "c^2 = a^2 + b^2 - 2ab\\cos(C) $0"
+        ]
+    },
+    "Trigonometry - Cosh": {
+        "prefix": "hyperbolic-cosh-trig",
+        "body": [
+            "\\cosh{x} = \frac{e^x + e^{-x}}{2} $0"
+        ]
+    },
+    "Trigonometry - Sinh": {
+        "prefix": "hyperbolic-sinh-trig",
+        "body": [
+            "\\sinh{x} = \frac{e^x - e^{-x}}{2} $0"
+        ]
+    },
+}
