@@ -1,0 +1,14 @@
+---
+- name: Become
+  become: true
+  block:
+    - name: Ensure ClamAV installed
+      ansible.builtin.apt:
+        name:
+          - clamav
+          - clamav-daemon
+          - clamav-freshclam
+        state: present
+      notify: Restart ClamAV
+
+# Config files in /etc/clamav

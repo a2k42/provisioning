@@ -1,0 +1,7 @@
+---
+- name: Restart ClamAV
+  become: true
+  ansible.builtin.systemd:
+    name: clamav-daemon
+    enabled: true
+    state: restarted
