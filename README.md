@@ -38,6 +38,12 @@ Then to start the vm named `debian-kde`, for example
 virsh start debian-kde
 ```
 
+Add public keys to remote authorized_keys
+
+```bash
+ssh-copy-id test@debian-kde.local
+```
+
 Then run the playbook
 
 ```bash
@@ -49,17 +55,6 @@ See the `ansible_playbooks` [README](ansible_playbooks/README.md) for details ab
 ## Todo
 
 - [ ] Add `screenkey`
+- [ ] Backport kernel > v6.5
+- [ ] Tidy ansible_playbook README
 
-
-### Plasma Desktop
-
-You can do a minimal debian install `< 3GB`, with the desktop `< 6GB`.
-
-- Debian [`plasma-desktop`](https://packages.debian.org/bookworm/plasma-desktop) is the usual "minimal" install but still has quite a few unecessary apps.
-- For wayland, use [`plasma-workspace-wayland`](https://packages.debian.org/bookworm/plasma-workspace-wayland) instead
-- Using `--no-install-recommends` leaves the desktop broken, figuring exactly which packages to install looks to be quite a bit of work.
-- There doesn't seem to be a way to turn off recommended installs on a per package basis in the auto-install.
-- Debain wiki for [Wayland](https://wiki.debian.org/Wayland)
-- [Wayland on NVidia](https://community.kde.org/Plasma/Wayland/Nvidia)
-
-> Recommends: appmenu-gtk3-module, kde-cli-tools (>= 4:5.23.90~), kio-extras, libpam-kwallet5 (>= 5.14), powerdevil (>= 4:5.14)

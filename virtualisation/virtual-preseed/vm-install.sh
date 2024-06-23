@@ -7,10 +7,11 @@ ISO_PATH="$HOME/ISOs/debian/debian-12.5.0-amd64-DVD-1.iso"
 PRESEED_PATH="."
 RAM="4096" # MB
 CPUS="4"
-DISK_SIZE="32" # GB
+DISK_SIZE="24" # GB
 DESCRIPTION="used for testing configuration management"
 
 # Example Usage: ./vm-install kde base 20
+# virsh undefine --nvram debian-bas
 
 if [ $# -ge 1 ]; then
     TYPE="$1"
@@ -37,6 +38,7 @@ virt-install \
   --memory $RAM \
   --vcpus $CPUS \
   --disk size=$DISK_SIZE \
+  --disk size=4 \
   --cdrom $ISO_PATH \
   --os-variant $OS_VARIANT \
   --graphics spice \
