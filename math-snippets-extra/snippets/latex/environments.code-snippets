@@ -2,7 +2,7 @@
     "Environment - Begin Block": {
         "prefix": "begin-block-environment",
         "body": [
-            "\\begin{${1|align,array,enumerate,tabular,pmatrix,bmatrix,cases|}}",
+            "\\begin{${1|align,array,enumerate,tabular,bmatrix,pmatrix,vmatrix,cases|}}",
             "$0 \\\\\\\\",
             "\\end{$1}"
         ]

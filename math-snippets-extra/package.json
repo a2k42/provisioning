@@ -41,6 +41,10 @@
             },
             {
                 "language": "latex",
+                "path": "./snippets/latex/vector.code-snippets"
+            },
+            {
+                "language": "latex",
                 "path": "./snippets/latex.code-snippets"
             },
             {

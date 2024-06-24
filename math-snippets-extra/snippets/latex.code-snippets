@@ -6,27 +6,10 @@
 	"LaTeX - Inline Fraction": {
 		"prefix": "fraction, half, third, quarter",
 		"body": [
-			"\\textstyle \\frac{1}{${1|2,3,4,5,6,7,8,9,10|}} $0"
+			"\\textstyle \\frac{$1}{${2|2,3,4,5,6,7,8,9,10|}}$0"
 		],
 		"description": "A half fraction"
 	},
-    "LaTeX - Vector": {
-        "prefix": "vector-bold",
-        "body": "\\vec{\\mathbf{$1}}",
-        "description": "Bold with arrow"
-	},
-    "LaTeX - Unit Vector (hat)": {
-        "prefix": "unit-hat-vec",
-        "body": [
-            "\\hat{\\mathbf{$1}}"
-        ]
-    },
-    "LaTeX - Delta Vector": {
-        "prefix": "delta-vector",
-        "body": [
-            "\\Delta{\\mathbf{\\vec{$1}}}"
-        ]
-    },
     "LaTeX - Discontinuous Function": {
         "prefix": "cases-discontinuous-fn",
         "body": [
