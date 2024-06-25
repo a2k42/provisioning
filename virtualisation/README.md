@@ -95,9 +95,3 @@ nvme0n1
 └─nvme0n1p4     swap        1
   └─cryptswap   swap        1        cryptswap                       [SWAP]
 ```
-
-## VSCode `settings.json`
-
-```bash
-ln -s ~/Source/Engineering/provisioning/ansible-roles/developer/vscode/files/settings.json settings.json
-```
