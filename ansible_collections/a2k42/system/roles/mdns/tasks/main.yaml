@@ -1,0 +1,28 @@
+---
+- name: Ensure Avahi mDNS Installed
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - avahi-daemon
+    - avahi-utils
+  notify: Enable avahi
+
+- name: Configure Avahi
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/avahi/avahi-daemon.conf
+    regexp: "{{ item.regex }}"
+    line: "{{ item.line }}"
+  loop:
+    - regex: ^use-ipv6=
+      line: use-ipv6=no
+      # line: use-ipv6=yes # default
+    - regex: enable-dbus
+      # line: enable-dbus=yes
+      line: "#enable-dbus=yes" # default
+    - regex: ^publish-workstation=no
+      line: publish-workstation=yes
+      # line: publish-workstation=no # default
+  notify: Restart avahi

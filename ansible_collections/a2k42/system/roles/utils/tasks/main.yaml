@@ -1,0 +1,26 @@
+---
+- name: Ensure CLI Utils Installed
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - bash-completion
+    - calendar
+    - cryptsetup
+    - curl
+    - fd-find
+    - htop
+    - ncal
+    - nmap
+    - parted
+    - psensor
+    - sdparm
+    - tmux
+    - tree
+    - vim
+
+    # - fzf
+    # - tldr
+    # - xclip         # X11
+    # - wl-clipboard  # wayland

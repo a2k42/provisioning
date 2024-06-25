@@ -1,0 +1,16 @@
+---
+- name: Enable avahi
+  become: true
+  ansible.builtin.service:
+    name: avahi-daemon
+    enabled: true
+- name: Start avahi
+  become: true
+  ansible.builtin.service:
+    name: avahi-daemon
+    state: started
+- name: Restart avahi
+  become: true
+  ansible.builtin.service:
+    name: avahi-daemon
+    state: restarted

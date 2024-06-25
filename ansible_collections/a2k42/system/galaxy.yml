@@ -1,0 +1,15 @@
+---
+namespace: a2k42
+name: system
+version: 0.1.0
+readme: ./
+authors:
+  - a2k42
+license:
+  - "MIT"
+description: Roles for a basic debian system
+tags:
+  - roles
+  - os
+  - system
+repository: https://github.com/a2k42/provisioning
