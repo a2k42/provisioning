@@ -30,6 +30,12 @@ Passwords should be hashed, but for testing use:
 - password: `secret`
 - cryptsetup: `super-secret`
 
+To remove a previous known host
+
+```bash
+ssh-keygen -f ~/.ssh/known_hosts -R debian-kde.local
+```
+
 ## User Scripts
 
 Utility scripts a user can go in `~/.local/bin` or for all users `/usr/local/bin`
