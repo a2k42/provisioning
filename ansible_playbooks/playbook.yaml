@@ -14,6 +14,10 @@
     - a2k42.security.firewall
     - a2k42.security.clamav
 
+- name: Configure Desktop
+  hosts: vdesktops
+  roles:
+    - a2k42.desktop.flatpak
 
 - name: Configure laptop
   hosts: laptop
