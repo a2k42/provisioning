@@ -50,10 +50,47 @@
             {
                 "language": "latex",
                 "path": "./snippets/font.code-snippets"
+            },
+            {
+                "language": "tex",
+                "path": "./snippets/latex/calculus.code-snippets"
+            },
+            {
+                "language": "tex",
+                "path": "./snippets/latex/combinatorics.code-snippets"
+            },
+            {
+                "language": "tex",
+                "path": "./snippets/latex/environments.code-snippets"
+            },
+            {
+                "language": "tex",
+                "path": "./snippets/latex/foundation.code-snippets"
+            },
+            {
+                "language": "tex",
+                "path": "./snippets/latex/linear-algebra.code-snippets"
+            },
+            {
+                "language": "tex",
+                "path": "./snippets/latex/trigonometry.code-snippets"
+            },
+            {
+                "language": "tex",
+                "path": "./snippets/latex/vector.code-snippets"
+            },
+            {
+                "language": "tex",
+                "path": "./snippets/latex.code-snippets"
+            },
+            {
+                "language": "tex",
+                "path": "./snippets/font.code-snippets"
             }
         ]
     },
     "extensionPack": [
-        "thomanq.math-snippets"
+        "thomanq.math-snippets",
+        "wenfangdu.snippet-generator"
     ]
 }
