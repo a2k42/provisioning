@@ -8,4 +8,10 @@ Do ***NOT*** `become: true` at the playbook level unless you really do want the 
 
 ### Security
 
+- [ ] Add role for `apparmor`
+- [ ] Backport kernel > v6.5
+- [ ] Add checksums for texlive
+- [ ] Better way of updating `rustup` and `juliaup` sha512 checksums
 - [ ] Change default ssh port
+- [ ] Add `screenkey`
+- [ ] Checkout .dotfiles repo, permissions required

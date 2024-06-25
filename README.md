@@ -54,8 +54,6 @@ See the `ansible_playbooks` [README](ansible_playbooks/README.md) for details ab
 
 ## Todo
 
-- [ ] Add `screenkey`
-- [ ] Backport kernel > v6.5
-- [ ] Tidy ansible_playbook README
-- [ ] Better way of updating `rustup` and `juliaup` sha512 checksums
-- [ ] Checkout .dotfiles repo, permissions required
+
+- [ ] Tidy [Ansible Playbooks README](./ansible_playbooks/README.md)
+- [ ] Update [Ansible Collections](./ansible_collections/README.md#TODO)
