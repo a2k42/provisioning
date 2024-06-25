@@ -38,10 +38,15 @@
         ],
         "description": "Definite integral with dummy variable"
     },
-    "Calculus - Differentiate Fraction": {
+    "Calculus - Differential Fraction": {
         "prefix": "diff-fraction-calculus",
         "body": "\\frac{d$1}{d$2} $0 ",
         "description": "Leibniz differential notation"
+    },
+    "Calculus - Partial Fraction": {
+        "prefix": "partial-fraction-calculus",
+        "body": "\\frac{\\partial{${1:f}}}{\\partial{${2|x,y,z|}}}$0",
+        "description": "Leibniz partial notation"
     },
     "Calculus - FTC1": {
         "prefix": "ftc1-calculus",
