@@ -1,0 +1,10 @@
+---
+- name: Ensure Haskell installed
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - ghc
+    - cabal-install
+    - haskell-stack

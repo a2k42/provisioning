@@ -1,0 +1,68 @@
+# see also https://github.com/jan-matthis/ansible_julia/
+---
+- name: Shorten variables
+  ansible.builtin.set_fact:
+    tarball_dir: "{{ julia_tarball_dir }}"
+    dist_dir: "{{ julia_dist_dir }}"
+    url_base: "{{ julia_url_base }}"
+    bits: "{{ julia_bits }}"
+    arch: "{{ julia_arch }}"
+    version: "{{ julia_version }}"
+    patch: "{{ julia_patch }}"
+    binary: "{{ julia_binary }}"
+
+- name: Ensure Tarball Directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  with_items:
+    - "{{ tarball_dir }}/"
+    - "{{ dist_dir }}/"
+
+- name: Ensure Julia Downloaded
+  ansible.builtin.get_url:
+    url: "{{ url_base }}/linux/{{ bits }}/{{ version }}/julia-{{ version }}.{{ patch }}-{{ binary }}-{{ arch }}.tar.gz"
+    dest: "{{ tarball_dir }}/"
+    checksum: "sha256:{{ url_base }}/checksums/julia-{{ version }}.{{ patch }}.sha256"
+    owner: root
+    group: root
+    mode: "0644"
+
+# Import signature to gpg
+
+- name: Extract Archive
+  ansible.builtin.unarchive:
+    src: "{{ tarball_dir }}/julia-{{ version }}.{{ patch }}-{{ binary }}-{{ arch }}.tar.gz"
+    dest: "{{ dist_dir }}/"
+    remote_src: true
+
+- name: Create Symbolic Link
+  ansible.builtin.file:
+    src: "{{ dist_dir }}/julia-{{ version }}.{{ patch }}/bin/julia"
+    dest: /usr/local/bin/julia
+    state: link
+    force: true
+
+- name: Ensure dependencies installed
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ffmpeg
+    - cmake
+    - xorg-dev
+    - build-essential
+    - libglfw3
+
+# - name: Fix Julia GLMakie Errors
+#   become: false
+#   blockinfile:
+#     path: ~/.bashrc
+#     block: |
+#       # Prevent Julia using wrong libstdc++
+#       export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6
+#       export LIBGL_ALWAYS_INDIRECT=0
+
+# https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.2-linux-x86_64.tar.gz
+# https://julialang-s3.julialang.org/bin/checksums/julia-1.7.2.sha256

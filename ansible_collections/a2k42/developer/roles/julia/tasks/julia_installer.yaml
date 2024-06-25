@@ -1,0 +1,21 @@
+---
+- name: Check if .julia directory exists before installation
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.julia"
+  register: julia_dir_before_installation
+  changed_when: false
+
+- name: Download juliaup installation script
+  ansible.builtin.get_url:
+    url: "{{ julia_up_url }}"
+    dest: /tmp/juliaup.install.sh
+    mode: "0755"
+    checksum: sha512:50c6b4a5dd1cc660113291d828789580b4e103012b9ab632690c5f941f8ebd00b71e043999f53f9aba19c71d440749bb6c8ee71a6b166b9fd77afeaa2aee7589
+    # https://github.com/JuliaLang/juliaup/releases v1.14.9
+  when: not julia_dir_before_installation.stat.exists
+
+- name: Run juliaup installation script
+  ansible.builtin.command: /tmp/juliaup.install.sh -y
+  register: result
+  when: not julia_dir_before_installation.stat.exists
+  changed_when: "'already installed' not in result.stdout"

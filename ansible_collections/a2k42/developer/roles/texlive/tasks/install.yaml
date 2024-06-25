@@ -1,0 +1,68 @@
+---
+- name: Ensure tarballs directory exists
+  ansible.builtin.file:
+    path: "{{ texlive_install_tarball | dirname }}"
+    state: directory
+    mode: "0755"
+
+- name: Ensure dist directory exists
+  ansible.builtin.file:
+    path: "{{ texlive_dist_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Download TeX Live installer
+  ansible.builtin.get_url:
+    url: http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+    dest: "{{ texlive_install_tarball }}"
+    mode: "0660"
+
+- name: Extract TeX Live installer
+  ansible.builtin.unarchive:
+    src: "{{ texlive_install_tarball }}"
+    dest: "{{ texlive_dist_dir }}"
+    remote_src: true
+
+- name: Find the extracted TeX Live directory
+  ansible.builtin.find:
+    paths: /usr/local/dist/
+    file_type: directory
+    patterns: 'install-tl-*'
+  register: texlive_dir
+
+- name: Show directory
+  ansible.builtin.debug:
+    msg: "{{ texlive_dir.files.0.path }}"
+
+- name: Check if texlive.profile exists
+  ansible.builtin.stat:
+    path: "{{ texlive_dir.files.0.path }}/texlive.profile"
+  register: texlive_profile
+  changed_when: false
+
+- name: Touch profile file
+  ansible.builtin.file:
+    path: "{{ texlive_profile }}"
+    state: touch
+    mode: "0660"
+  when: not texlive_profile.stat.exists
+
+- name: Install TeX Live
+  ansible.builtin.command: "{{ texlive_dir.files.0.path }}/install-tl --no-gui --profile {{ texlive_dir.files.0.path }}/texlive.profile"
+  args:
+    creates: /usr/local/texlive
+
+# TODO use variable for install directory
+- name: Add directory to PATH in /etc/profile
+  ansible.builtin.lineinfile:
+    path: /etc/profile.d/texlive-path.sh
+    line: "export PATH=$PATH:/usr/local/texlive/2023/bin/x86_64-linux"
+    create: true
+    state: present
+    mode: "0544"
+
+# Add /usr/local/texlive/2023/texmf-dist/doc/man to MANPATH.
+# Add /usr/local/texlive/2023/texmf-dist/doc/info to INFOPATH.
+# Most importantly, add /usr/local/texlive/2023/bin/x86_64-linux
+# to your PATH for current and future sessions.
+# Logfile: /usr/local/texlive/2023/install-tl.log

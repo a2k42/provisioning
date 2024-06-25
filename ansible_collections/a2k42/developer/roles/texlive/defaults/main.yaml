@@ -1,0 +1,2 @@
+texlive_install_tarball: /usr/local/tarballs/install-tl-unx.tar.gz
+texlive_dist_dir: /usr/local/dist

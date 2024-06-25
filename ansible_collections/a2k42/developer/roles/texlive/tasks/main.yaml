@@ -1,0 +1,3 @@
+- name: Install Texlive
+  become: true
+  ansible.builtin.import_tasks: install.yaml

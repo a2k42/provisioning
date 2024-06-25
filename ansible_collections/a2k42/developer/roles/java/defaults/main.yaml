@@ -1,0 +1,6 @@
+---
+# Use LTS versions as defaults
+java_packages:
+  - default-jdk
+  - openjdk-17-jdk
+java_state: present

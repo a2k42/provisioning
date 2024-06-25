@@ -1,0 +1,33 @@
+---
+- name: Install authoring tools
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - pandoc
+    - librsvg2-bin
+    - graphviz
+    - plantuml
+
+- name: Ensure Crossref Directory
+  become: true
+  ansible.builtin.file:
+    path: /usr/local/lib/crossref/
+    state: directory
+    mode: "0755"
+
+- name: Ensure pandoc-crossref installed
+  become: true
+  ansible.builtin.unarchive:
+    src: "https://github.com/lierdakil/pandoc-crossref/releases/download/v{{ version }}/pandoc-crossref-Linux.tar.xz"
+    remote_src: true
+    dest: /usr/local/lib/crossref/
+  vars:
+    version: "0.3.17.0c"
+
+# https://raw.githubusercontent.com/pandoc/lua-filters/master/diagram-generator/diagram-generator.lua
+
+# https://github.com/plantuml/plantuml/releases/download/v1.2022.5/plantuml-1.2022.5.jar
+
+# Ubunut package for plantuml is not up-to-date; suggestion that need latest version of ubuntu?

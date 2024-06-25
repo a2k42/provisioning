@@ -1,0 +1,15 @@
+---
+- name: Install Flatpak Packages
+  become: true
+  community.general.flatpak:
+    name: "{{ item.name }}"
+    state: present
+    method: system
+  loop:
+    - name: org.audacityteam.Audacity
+    - name: org.blender.Blender
+    - name: org.gimp.GIMP
+    - name: org.inkscape.Inkscape
+    - name: com.obsproject.Studio
+    - name: org.videolan.VLC
+    # - name: org.freedesktop.Platform.ffmpeg-full

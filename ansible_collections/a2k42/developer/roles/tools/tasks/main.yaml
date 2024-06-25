@@ -1,0 +1,7 @@
+---
+- name: Install ffmpeg
+  become: true
+  ansible.builtin.apt:
+    name: ffmpeg
+    state: present
+    # name: ['audacity', 'ffmpeg', 'gimp', 'vlc']

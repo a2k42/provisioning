@@ -1,0 +1,24 @@
+---
+- name: Download Julia
+  ansible.builtin.import_tasks: julia_download.yaml
+  become: true
+  when: not julia_use_juliaup
+
+- name: Run Julia Installer
+  ansible.builtin.import_tasks: julia_installer.yaml
+  become: false
+  when: julia_use_juliaup
+
+- name: Startup config
+  ansible.builtin.copy:
+    src: startup.jl
+    dest: "{{ ansible_user_dir }}/.julia/config/"
+    mode: "0644"
+
+- name: Add Julia Project Alias
+  ansible.builtin.lineinfile:
+    path: ~/.bash_aliases
+    regex: "^alias jp="
+    line: "alias jp='julia --project=. --optimize=0'"
+    mode: "0644"
+    create: true

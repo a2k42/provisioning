@@ -1,0 +1,7 @@
+---
+- name: "Ensure Java JDKs {{ java_state }}"
+  become: true
+  ansible.builtin.apt:
+    name: "{{ java_packages }}"
+    state: "{{ java_state }}"
+    autoremove: true

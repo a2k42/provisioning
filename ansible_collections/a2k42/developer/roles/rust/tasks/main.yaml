@@ -1,0 +1,22 @@
+---
+- name: Check if .cargo directory exists before installation
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.cargo"
+  register: cargo_dir_before_installation
+  changed_when: false
+
+- name: Download rustup installation script
+  ansible.builtin.get_url:
+    url: "{{ rust_up_url }}"
+    dest: /tmp/rustup.sh
+    mode: "0755"
+    checksum: sha512:bece2dfa6889f3ac4de782e51543cf18112130092d50d270c86ffcd5f6e62636d39077dffd71ed7df59e7fa8123f5746d0558783f86246ca2cee8c24ecb07545
+  when: not cargo_dir_before_installation.stat.exists
+
+
+- name: Run rustup installation script
+  ansible.builtin.command: /tmp/rustup.sh -y
+  become: false
+  register: result
+  when: not cargo_dir_before_installation.stat.exists
+  changed_when: "'unchanged' not in result.stdout"

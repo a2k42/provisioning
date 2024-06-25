@@ -1,0 +1,11 @@
+---
+julia_url_base: https://julialang-s3.julialang.org/bin
+julia_bits: x64
+julia_arch: x86_64
+julia_version: 1.10
+julia_patch: 1
+julia_binary: linux   # linux=glibc or use musl
+julia_tarball_dir: /usr/local/tarballs
+julia_dist_dir: /usr/local/dist
+julia_up_url: https://install.julialang.org
+julia_use_juliaup: true

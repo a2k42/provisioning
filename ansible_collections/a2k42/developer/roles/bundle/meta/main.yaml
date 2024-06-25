@@ -1,0 +1,9 @@
+---
+dependencies:
+  - role: a2k42.developer.authoring
+  - role: a2k42.developer.git
+  - role: a2k42.developer.haskell
+  - role: a2k42.developer.java
+  - role: a2k42.developer.julia
+  - role: a2k42.developer.rust
+  - role: a2k42.developer.tools

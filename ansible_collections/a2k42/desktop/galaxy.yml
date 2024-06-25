@@ -1,0 +1,14 @@
+---
+namespace: a2k42
+name: desktop
+version: 0.1.0
+readme: ./
+authors:
+  - a2k42
+license:
+  - "MIT"
+description: Desktop application roles
+tags:
+  - roles
+  - desktop
+repository: https://github.com/a2k42/provisioning
