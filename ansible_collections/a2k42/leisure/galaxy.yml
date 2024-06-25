@@ -1,0 +1,14 @@
+---
+namespace: a2k42
+name: leisure
+version: 0.1.0
+readme: ./
+authors:
+  - a2k42
+license:
+  - "MIT"
+description: Fun stuff
+tags:
+  - roles
+  - leisure
+repository: https://github.com/a2k42/provisioning
