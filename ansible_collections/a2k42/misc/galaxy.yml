@@ -1,0 +1,14 @@
+---
+namespace: a2k42
+name: misc
+version: 0.1.0
+readme: ./
+authors:
+  - a2k42
+license:
+  - "MIT"
+description: Misculaneous roles e.g. debugging
+tags:
+  - roles
+  - misc
+repository: https://github.com/a2k42/provisioning
