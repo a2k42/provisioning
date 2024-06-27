@@ -15,3 +15,4 @@ Do ***NOT*** `become: true` at the playbook level unless you really do want the 
 - [ ] Change default ssh port
 - [ ] Add `screenkey`
 - [ ] Checkout .dotfiles repo, permissions required
+- [ ] Use `loop` or `with_items` as per [docs](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_loops.html#comparing-loop-and-with)
