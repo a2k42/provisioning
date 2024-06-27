@@ -5,9 +5,9 @@ RECIPE="base"
 OS_VARIANT="debian12"
 ISO_PATH="$HOME/ISOs/debian/debian-12.5.0-amd64-DVD-1.iso"
 PRESEED_PATH="."
-RAM="4096" # MB
+RAM="8192" # MB
 CPUS="4"
-DISK_SIZE="24" # GB
+DISK_SIZE="64" # GB
 DESCRIPTION="used for testing configuration management"
 
 # Example Usage: ./vm-install kde base 20
