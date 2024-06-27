@@ -1,0 +1,12 @@
+---
+- name: Register default target # noqa: command-instead-of-module
+  ansible.builtin.command: "systemctl get-default"
+  changed_when: false
+  register: default_target
+
+- name: Default to multi target
+  become: true
+  ansible.builtin.command: "systemctl set-default multi-user.target"
+  # when: "'graphical' not in default_target.stdout"
+  when: "'multi-user' not in default_target.stdout"
+  changed_when: true

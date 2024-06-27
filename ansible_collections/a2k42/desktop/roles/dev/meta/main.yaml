@@ -1,0 +1,4 @@
+---
+dependencies:
+  - role: a2k42.desktop.flatpak
+  - role: a2k42.developer.java

@@ -7,7 +7,6 @@
     method: system
   loop:
     - name: org.audacityteam.Audacity
-    - name: org.blender.Blender
     - name: org.gimp.GIMP
     - name: org.inkscape.Inkscape
     - name: com.obsproject.Studio

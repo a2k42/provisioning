@@ -1,0 +1,20 @@
+---
+- name: Install Development Flatpaks
+  become: true
+  become_user: "{{ ansible_user }}"
+  community.general.flatpak:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    method: user
+  loop:
+    - name: com.jetbrains.IntelliJ-IDEA-Community
+      state: present
+    - name: com.getpostman.Postman
+      state: present
+    - name: com.google.AndroidStudio
+      state: absent
+    - name: com.visualstudio.code # unoffical version - warning
+      state: absent
+
+- name: Ensure Code Installed
+  import_role: code.yaml

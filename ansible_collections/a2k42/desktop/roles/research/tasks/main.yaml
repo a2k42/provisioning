@@ -8,3 +8,4 @@
   loop:
     - name: md.obsidian.Obsidian
     - name: org.zotero.Zotero
+    - name: org.paraview.ParaView
