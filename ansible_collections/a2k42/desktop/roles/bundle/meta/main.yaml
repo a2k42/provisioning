@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: a2k42.desktop.browsers
+  - role: a2k42.desktop.creative
+  - role: a2k42.desktop.research

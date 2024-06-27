@@ -1,0 +1,12 @@
+---
+- name: Install Flatpak Packages
+  become: true
+  community.general.flatpak:
+    name: "{{ item.name }}"
+    state: present
+    method: system
+  loop:
+    - name: org.chromium.Chromium
+    - name: org.mozilla.firefox
+    # - name: com.google.Chrome
+    # - name: com.microsoft.Edge

@@ -19,7 +19,7 @@
 - name: Configure Desktop
   hosts: vdesktops
   roles:
-    - a2k42.desktop.creative
+    - a2k42.desktop.bundle
     - a2k42.leisure.entertainment
 
 - name: Configure laptop

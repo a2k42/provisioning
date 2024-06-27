@@ -1,0 +1,10 @@
+---
+- name: Install Flatpak Packages
+  become: true
+  community.general.flatpak:
+    name: "{{ item.name }}"
+    state: present
+    method: system
+  loop:
+    - name: md.obsidian.Obsidian
+    - name: org.zotero.Zotero
