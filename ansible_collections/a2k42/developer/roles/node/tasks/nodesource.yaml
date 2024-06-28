@@ -1,0 +1,60 @@
+---
+# - name: Get Node Version
+#   ansible.builtin.shell: ". nvm.sh && node --version"
+#   args:
+#     executable: /bin/bash
+#     chdir: "{{ ansible_user_dir }}/.nvm"
+#   register: node_version
+#   changed_when: false
+
+# - name: Ensure PNPM Installed
+#   community.general.npm:
+#     name: pnpm
+#     executable: "{{ ansible_user_dir }}/.nvm/versions/node/{{ node_version.stdout }}/bin/npm"      # If not installed on system, use nvm
+#     global: true
+    # ignore_scripts: true
+    # no_optional: true
+    # state: present
+    # /home/test/.nvm/versions/node/v20.15.0/bin/npm
+    # no_bin_links: true
+
+# TODO
+# - name: Ensure PNPM Installed
+#   ansible.builtin.get_url:
+#     url: https://get.pnpm.io/install.sh
+#     dest: /tmp/pnpm.install.sh
+#     mode: "0750"
+  # when: not nvm_dir
+
+# - name: Add NodeSource Repository
+#   ansible.builtin.include_role:
+#     name: add_ppa
+#   vars:
+#     keyserver_url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+#     keyname: nodesource.asc
+#     package_url: https://deb.nodesource.com/node_19.x
+#     codename: jammy
+#     repo: nodesource
+#     repo_state: present
+
+# - name: Open Firewall Ports
+#   ufw:
+#     rule: "allow"
+#     name: "APT"
+#     dest: "{{ item.dest }}"
+#     direction: "out"
+#     comment: "deb.nodesource.com -> akami.net"
+#   loop:
+#   - dest: "62.252.115.26"
+#   - dest: "62.252.115.34"
+#   notify: reload ufw
+
+# - name: Ensure Node Installed (System)
+#   apt:
+#     name: nodejs
+#     state: latest
+
+# - name: Ensure NPM Installed (System)
+#   apt:
+#     name: npm
+#     state: latest
