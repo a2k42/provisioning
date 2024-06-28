@@ -9,6 +9,28 @@
   become: false
   when: julia_use_juliaup
 
+- name: Check if Revise.jl Installed
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.julia/packages/Revise"
+  register: revise_package
+  changed_when: false
+
+- name: Copy Install Script
+  ansible.builtin.copy:
+    src: install.jl
+    dest: /tmp
+    mode: "0644"
+
+- name: Add Revise.jl Package
+  ansible.builtin.command: "{{ ansible_user_dir }}/.juliaup/bin/julia --startup-file=no /tmp/install.jl"
+  register: result
+  when: julia_use_juliaup
+  changed_when: not 'No Changes' in result.stderr
+
+- name: Show result
+  ansible.builtin.debug:
+    msg: "{{ result.stderr }}"
+
 - name: Startup config
   ansible.builtin.copy:
     src: startup.jl
