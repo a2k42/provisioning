@@ -2,4 +2,4 @@
 dependencies:
   - role: a2k42.desktop.desktop_user
     vars:
-      desktop_user_name: "{{ modelling_user_name }}"
+      desktop_user_name: "{{ games_user_name }}"

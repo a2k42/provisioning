@@ -1,7 +1,7 @@
 ---
 - name: Install Blender Packages
   become: true
-  become_user: "{{ modelling_leisure_user }}"
+  become_user: "{{ modelling_user_name }}"
   community.general.flatpak:
     name: "{{ item.name }}"
     state: present

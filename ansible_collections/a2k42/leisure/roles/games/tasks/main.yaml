@@ -1,0 +1,11 @@
+---
+- name: Install Entertainment Flatpak Packages
+  become: true
+  become_user: "{{ games_user_name }}"
+  community.general.flatpak:
+    name: "{{ item.name }}"
+    state: present
+    method: user
+  loop:
+    - name: org.kde.ktorrent
+    - name: com.valvesoftware.Steam

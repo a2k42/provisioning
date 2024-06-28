@@ -20,8 +20,9 @@
   hosts: vdesktops
   roles:
     - a2k42.desktop.bundle
-    - a2k42.leisure.entertainment
+    - a2k42.leisure.games
     - a2k42.leisure.modelling
+    - a2k42.leisure.music
 
 - name: Configure laptop
   hosts: laptop

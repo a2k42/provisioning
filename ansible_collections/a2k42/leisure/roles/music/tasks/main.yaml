@@ -1,0 +1,9 @@
+---
+- name: Install Spotify Flatpak Package
+  become: true
+  community.general.flatpak:
+    name: "{{ item.name }}"
+    state: present
+    method: system
+  loop:
+    - name: com.spotify.Client
