@@ -1,0 +1,22 @@
+---
+- name: Create User
+  become: true
+  ansible.builtin.user:
+    name: "{{ leisure_user }}"
+    comment: User
+    password: "{{ leisure_password }}"
+    update_password: "on_create"
+    groups: users,audio,dip,video,plugdev,users,netdev,bluetooth
+    # append: true
+    shell: /bin/bash
+    state: present
+
+- name: Add the flathub flatpak repository remote to the user installation
+  become: true
+  become_user: "{{ leisure_user }}"
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    method: user
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+# flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

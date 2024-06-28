@@ -1,0 +1,10 @@
+---
+- name: Install Blender Packages
+  become: true
+  become_user: "{{ modelling_leisure_user }}"
+  community.general.flatpak:
+    name: "{{ item.name }}"
+    state: present
+    method: user
+  loop:
+    - name: org.blender.Blender

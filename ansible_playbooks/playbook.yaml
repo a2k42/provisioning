@@ -21,6 +21,7 @@
   roles:
     - a2k42.desktop.bundle
     - a2k42.leisure.entertainment
+    - a2k42.leisure.modelling
 
 - name: Configure laptop
   hosts: laptop

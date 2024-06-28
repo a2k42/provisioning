@@ -1,0 +1,4 @@
+---
+dependencies:
+  - role: a2k42.system.utils
+  - role: a2k42.desktop.flatpak

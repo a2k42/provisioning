@@ -5,6 +5,7 @@
     name: "{{ item }}"
     state: present
   loop:
+    - acl   # required for temp permissions
     - bash-completion
     - calendar
     - cryptsetup
