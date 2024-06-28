@@ -1,9 +1,8 @@
 ---
 - name: Ensure VS Code Installed
+  become: true
   ansible.builtin.apt:
-    # name: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
-    deb: https://vscode.download.prss.microsoft.com/dbazure/download/stable/5437499feb04f7a586f677b155b039bc2b3669eb/code_1.90.2-1718751586_amd64.deb
-    checksum: "4a720002275c84a0cf1fb4b27bcafa5646a90760ddb569cf7af4c2aec399559a"
-    # url: https://code.visualstudio.com/sha/
+    deb: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+    # deb: https://vscode.download.prss.microsoft.com/dbazure/download/stable/5437499feb04f7a586f677b155b039bc2b3669eb/code_1.90.2-1718751586_amd64.deb
     state: present
-    autoclean: yes
+    autoclean: true
