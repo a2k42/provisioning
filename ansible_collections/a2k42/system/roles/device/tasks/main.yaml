@@ -1,0 +1,68 @@
+# moutpoints must be unique as they are made into systemd `.mount` files
+---
+- name: Ensure mountpoints exist for crypttab
+  become: true
+  ansible.builtin.file:
+    path: "/mnt/{{ item.name | trim }}"
+    state: directory
+    mode: "0774"
+  loop: "{{ device_ }}"
+
+- name: Setup crypttab
+  become: true
+  ansible.builtin.lineinfile:
+    dest: /etc/crypttab
+    regexp: "^{{ item.name | trim }}"
+    line: "{{ item.name }} LABEL={{ item.name }}      /etc/cryptsetup-keys.d/crypt-{{ item.name | trim }}.key {{ device_crypt_options }}"
+    backup: true
+    state: present
+    create: true
+    mode: "0644"
+  loop: "{{ device_ }}"
+
+# https://www.freedesktop.org/software/systemd/man/systemd.mount.html
+- name: Setup fstab for crypttab
+  become: true
+  ansible.builtin.lineinfile:
+    dest: /etc/fstab
+    regexp: "^/dev/mapper/{{ item.name | trim }}"
+    line: "/dev/mapper/{{ item.name }} /mnt/{{ item.name }} {{ item.fs }} {{ device_fstab_options }}  0  0"
+    backup: true
+    state: present
+  loop: "{{ device_ }}"
+
+  # loop:
+  #   - "/dev/mapper/backup /mnt/backup ext4 "
+  #   - "/dev/mapper/media  /mnt/media  ext4 "
+    # - "LABEL=Ventoy       /mnt/usb    exfat"
+
+# .dotfiles + stow replace these 3 tasks
+# - name: Ensure local bin directory exists
+#   ansible.builtin.file:
+#     path: "{{ ansible_user_dir }}/.local/bin/"
+#     state: directory
+#     mode: "0755"
+
+# - name: Install backup script
+#   ansible.builtin.template:
+#     src: backup.sh.j2
+#     dest: "{{ ansible_user_dir }}/.local/bin/backup"
+#     mode: "0770"
+
+# - name: Copy .ignore file
+#   ansible.builtin.copy:
+#     src: .ignore
+#     dest: "{{ ansible_user_dir }}/"
+#     mode: "0644"
+#   become: false
+  # archlinux docs suggest nofail option only works with keyfiles, could fail waiting for passphrase in crypttab
+  # x-systemd.device-timeout=3 was causing timeout (I can't type passphrase that quick) but didn't on old system (default 90s)
+  # use timeout with nofail,auto - here we don't need it
+
+# - name: Configure Cron Backups
+#   become: no
+#   ansible.builtin.cron:
+#     name: "run backup"
+#     minute: "35"
+#     job: "mountpoint -q /mnt/backup && {{ ansible_user_dir }}/.local/bin/backup 2>&1 | logger -t backup"
+#     state: "{{ state }}"

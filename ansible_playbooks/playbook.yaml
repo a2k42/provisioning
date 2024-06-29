@@ -16,6 +16,11 @@
     - a2k42.system.bundle
     - a2k42.developer.bundle
 
+- name: Configure Servers
+  hosts: vservers
+  roles:
+    - a2k42.system.device
+
 - name: Configure Desktop
   hosts: vdesktops
   roles:

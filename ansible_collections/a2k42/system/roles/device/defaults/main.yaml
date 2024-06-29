@@ -1,0 +1,9 @@
+---
+device_:
+  - name: "backup  "
+    fs: ext4
+  - name: "media   "
+    fs: ext4
+
+device_crypt_options: "luks,nofail"
+device_fstab_options: "noatime,users,exec,nofail,x-systemd.device-timeout=100ms,x-systemd.automount,x-systemd.idle-timeout=20min"
