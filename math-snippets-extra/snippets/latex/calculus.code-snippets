@@ -45,7 +45,7 @@
     },
     "Calculus - Partial Fraction": {
         "prefix": "partial-fraction-calculus",
-        "body": "\\frac{\\partial{${1:f}}}{\\partial{${2|x,y,z|}}}$0",
+        "body": "\\frac{\\partial{${1:f}}}{\\partial{${2:x}}}$0",
         "description": "Leibniz partial notation"
     },
     "Calculus - FTC1": {
@@ -54,5 +54,11 @@
             "\\int_a^b f(x) dx = F(b) - F(a) = F(x) \\Big|_a^b"
         ],
         "description": "Fundamental Theorem of Calculus"
+    },
+    "Calculus - Partial Constant": {
+        "prefix": "partial-constant-calculus",
+        "body": [
+            "\\left(\\frac{\\partial ${1:f}}{\\partial ${2:x}}\\right)_${3:y}"
+        ]
     },
 }
