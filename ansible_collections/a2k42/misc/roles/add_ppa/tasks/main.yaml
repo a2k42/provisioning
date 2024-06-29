@@ -1,0 +1,24 @@
+---
+- name: "Add Sign Key {{ add_ppa_keyname }} "
+  become: true
+  ansible.builtin.get_url:
+    url: "{{ add_ppa_keyserver_url }}"
+    dest: /etc/apt/keyrings/{{ add_ppa_keyname }}
+    mode: '0644'
+    force: true
+    backup: true
+  register: key
+
+# https://stackoverflow.com/questions/71585303/how-can-i-manage-keyring-files-in-trusted-gpg-d-with-ansible-playbook-since-apt
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_repository_module.html
+- name: "Add Repository {{ add_ppa_repo }}"
+  become: true
+  ansible.builtin.apt_repository:
+    # repo: "deb [signed-by={{ key.dest }}] {{ package_url }} {{ codename }} {{ add_ppa_branch }}"
+    repo: "{{ add_ppa_repo }}"
+    state: "{{ add_ppa_repo_state }}"
+
+- name: Update APT Cache
+  become: true
+  ansible.builtin.import_role:
+    name: a2k42.misc.update
