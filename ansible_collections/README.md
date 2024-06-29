@@ -6,6 +6,16 @@ Do ***NOT*** `become: true` at the playbook level unless you really do want the 
 
 ## TODO
 
+- [X] Use `loop` ~~or `with_items`~~ as per [docs](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_loops.html#comparing-loop-and-with)
+- [ ] Checkout .dotfiles repo, permissions required
+
+### Developer
+
+- [ ] Check for improvements to running Rootless Docker
+- [ ] Clean up new user creation, with / without desktop flatpak settings
+- [ ] Add `screenkey`
+- [ ] Check if docker service running before attempting to stop
+
 ### Security
 
 - [ ] Add role for `apparmor`
@@ -13,7 +23,4 @@ Do ***NOT*** `become: true` at the playbook level unless you really do want the 
 - [ ] Add checksums for texlive
 - [ ] Better way of updating `rustup` and `juliaup` sha512 checksums
 - [ ] Change default ssh port
-- [ ] Add `screenkey`
-- [ ] Checkout .dotfiles repo, permissions required
-- [ ] Use `loop` or `with_items` as per [docs](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_loops.html#comparing-loop-and-with)
-- [ ] Clean up new user creation, with / without desktop flatpak settings
+- [ ] Clamavonacc fills up `/var/logs`

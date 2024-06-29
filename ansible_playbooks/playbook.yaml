@@ -24,8 +24,12 @@
     - a2k42.leisure.modelling
     - a2k42.leisure.music
 
-- name: Configure laptop
+- name: Configure Laptop
   hosts: laptop
-
   roles:
     - a2k42.misc.debug
+
+- name: Configure Desktop
+  hosts: desktop
+  roles:
+    - a2k42.developer.texlive
