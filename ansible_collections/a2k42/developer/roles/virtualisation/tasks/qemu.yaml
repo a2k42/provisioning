@@ -1,0 +1,29 @@
+---
+# https://ubuntu.com/server/docs/virtualization-qemu
+- name: Install Dependencies
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - qemu-kvm
+    - qemu-system # includes all system binaries
+    # - qemu-system-x86
+    # - qemu-system-gui
+    - qemu-utils
+    - libvirt-clients
+    - libvirt-daemon
+    - libvirt-daemon-system
+    - virt-manager
+    - virtinst
+    - bridge-utils
+  notify:
+    - Start Libvert
+    - Enable Libvert
+
+# sudo usermod -aG kvm vkc ??
+
+# sudo virsh net-start default
+# sudo virsh net-autostart default
+# sudo adduser andy libvirt
+# sudo adduser andy libvirt-qemu

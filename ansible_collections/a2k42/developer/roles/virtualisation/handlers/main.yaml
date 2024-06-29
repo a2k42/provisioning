@@ -1,0 +1,10 @@
+---
+- name: Start Libvert
+  ansible.builtin.service:
+    name: libvirtd
+    state: started
+
+- name: Enable Libvert
+  ansible.builtin.service:
+    name: libvirtd
+    enabled: true

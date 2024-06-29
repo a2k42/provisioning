@@ -8,3 +8,4 @@ dependencies:
   - role: a2k42.developer.node
   - role: a2k42.developer.rust
   - role: a2k42.developer.tools
+  - role: a2k42.developer.virtualisation

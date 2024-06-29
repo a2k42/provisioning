@@ -1,0 +1,88 @@
+---
+- name: Ensure Old Packages Removed
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: absent
+  vars:
+    packages:
+      - docker
+      - docker-doc
+      - docker.io
+      - docker-compose
+      - docker-engine
+      - docker-io
+      - podman-docker
+      - containerd
+      - runc
+
+# https://docs.docker.com/engine/install/ubuntu/#uninstall-docker-engine
+
+- name: Ensure Docker Requirements Installed
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+      - uidmap            # for rootless mode
+      - dbus-user-session # for rootless mode
+      - fuse-overlayfs    # for rootless mode
+
+# - name: Add ufw rules for docker repo
+#   ansible.builtin.import_role:
+#     name: add_ufw_rules
+#   vars:
+#     list:
+#       - { rule: "allow", name: "APT", dest: "216.137.44.0/24", direction: "out", comment: "docker" }
+
+- name: Add Docker apt Repository
+  ansible.builtin.include_role:
+    name: a2k42.misc.add_ppa
+  vars:
+    add_ppa_keyserver_url: "{{ virtualisation_docker_apt_repo }}"
+    add_ppa_keyname: docker.asc
+    add_ppa_package_url: "{{ virtualisation_docker_package_url }}"
+    add_ppa_codename: bookworm
+    add_ppa_branch: stable
+    # add_ppa_repo: "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm"
+    add_ppa_repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable"
+    add_ppa_repo_state: present
+
+# - name: Ensure Docker Service Stopped
+#   become: true
+#   ansible.builtin.systemd:
+#     name: docker
+#     state: stopped
+#   changed_when: false
+
+- name: Ensure Docker Installed
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      # - docker-compose-plugin
+      # - docker-buildx-plugin
+
+- name: Ensure Rootless Mode
+  ansible.builtin.shell: "/usr/bin/dockerd-rootless-setuptool.sh install"
+  args:
+    executable: "/bin/bash"
+    creates: "{{ ansible_user_dir }}/.local/share/docker/"
+
+- name: Ensure Docker Service Started As User
+  ansible.builtin.systemd:
+    name: docker
+    scope: user
+    enabled: true
+    state: started

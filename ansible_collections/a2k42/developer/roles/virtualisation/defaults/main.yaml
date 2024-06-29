@@ -1,0 +1,5 @@
+---
+virtualisation_docker_apt_repo: https://download.docker.com/linux/debian/gpg
+# virtualisation_docker_apt_repo: https://download.docker.com/linux/ubuntu/gpg
+virtualisation_docker_package_url: https://download.docker.com/linux/debian
+# virtualisation_docker_package_url: https://download.docker.com/linux/ubuntu

@@ -1,0 +1,6 @@
+---
+- name: Ensure vagrant installed
+  become: true
+  ansible.builtin.apt:
+    name: vagrant
+    state: present

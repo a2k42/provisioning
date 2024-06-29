@@ -1,0 +1,7 @@
+---
+- name: Ensure Docker Installed
+  ansible.builtin.import_tasks: docker.yaml
+- name: Ensure Vagrant Installed
+  ansible.builtin.import_tasks: vagrant.yaml
+- name: Ensure QEMU Installed
+  ansible.builtin.import_tasks: qemu.yaml
