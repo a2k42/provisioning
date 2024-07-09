@@ -24,3 +24,7 @@ Do ***NOT*** `become: true` at the playbook level unless you really do want the 
 - [ ] Better way of updating `rustup` and `juliaup` sha512 checksums
 - [ ] Change default ssh port
 - [ ] Clamavonacc fills up `/var/logs`
+
+### System
+
+- [ ] Option to install latest kernel or specific version

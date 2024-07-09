@@ -5,11 +5,13 @@
     repo: "deb http://deb.debian.org/debian bookworm-backports main"
     state: present
 
-- name: Ensure Kernel Updated
+- name: Ensure Kernel Updated # noqa package-latest
   become: true
   ansible.builtin.apt:
     name: linux-image-amd64
     default_release: bookworm-backports
     update_cache: true
     autoclean: true
-    state: present
+    state: latest
+  notify: Reboot
+  when: not ansible_kernel is version('6.6', '>=')
