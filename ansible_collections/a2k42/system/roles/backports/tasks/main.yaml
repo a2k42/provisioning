@@ -1,0 +1,15 @@
+---
+- name: Add backports repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb http://deb.debian.org/debian bookworm-backports main"
+    state: present
+
+- name: Ensure Kernel Updated
+  become: true
+  ansible.builtin.apt:
+    name: linux-image-amd64
+    default_release: bookworm-backports
+    update_cache: true
+    autoclean: true
+    state: present

@@ -14,6 +14,7 @@
     - a2k42.security.firewall
     - a2k42.security.clamav
     - a2k42.system.bundle
+    - a2k42.system.backports
     - a2k42.developer.bundle
 
 - name: Configure Servers
