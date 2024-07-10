@@ -10,20 +10,20 @@
     url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh
     dest: /tmp/nvm.install.sh
     mode: "0750"
-    checksum: "be675049552a27d529ef5565c73708e7b18018e9778b0ec184c98a296ea498d4d89fdf2ef10374bf115b23a95f3b37607c3a016919c04be130df99f92165fb02"
-  when: not nvm_dir
+    checksum: "sha512:be675049552a27d529ef5565c73708e7b18018e9778b0ec184c98a296ea498d4d89fdf2ef10374bf115b23a95f3b37607c3a016919c04be130df99f92165fb02"
+  when: not nvm_dir.stat.exists
   # https://github.com/nvm-sh/nvm/archive/refs/tags/v0.39.7.tar.gz
 
 - name: Ensure NVM Installed
   ansible.builtin.command: /tmp/nvm.install.sh -y
   register: result
-  when: not nvm_dir
+  when: not nvm_dir.stat.exists
   changed_when: "'Close and reopen your terminal to start' in result.stdout"
 
 - name: Show result
   ansible.builtin.debug:
     msg: "{{ result.stdout }}"
-  when: not nvm_dir
+  when: not nvm_dir.stat.exists
 
 - name: Ensure Node LTS Installed
   ansible.builtin.shell: ". nvm.sh && nvm install --lts"
