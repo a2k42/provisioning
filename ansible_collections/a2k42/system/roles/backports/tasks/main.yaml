@@ -14,4 +14,4 @@
     autoclean: true
     state: latest
   notify: Reboot
-  when: not ansible_kernel is version('6.6', '>=')
+  when: not ansible_kernel is version(backports_kernel_version, '>=')
