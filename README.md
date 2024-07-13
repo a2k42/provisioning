@@ -81,7 +81,7 @@ An example directory layout you may wish to use with [Ventoy](https://www.ventoy
 
 ## Todo
 
-
+- [ ] Create Ansible task that copies a preseed template to ventoy with details (username, password...)
 - [ ] Tidy [Ansible Playbooks README](./ansible_playbooks/README.md)
 - [ ] Update [Ansible Collections](./ansible_collections/README.md#TODO)
 - [ ] Use apt cache or similar for completely offline installs
