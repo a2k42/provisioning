@@ -33,6 +33,7 @@
 - name: Configure Laptop
   hosts: laptop
   roles:
+    - a2k42.desktop.bundle
     - a2k42.misc.debug
 
 - name: Configure Desktop

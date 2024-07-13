@@ -1,2 +1,4 @@
 **/node_modules/
 **/.vagrant/
+
+quantum-preseed.cfg
