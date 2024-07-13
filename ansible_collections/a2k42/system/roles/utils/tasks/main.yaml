@@ -17,6 +17,7 @@
     - parted
     - psensor
     - sdparm
+    - stow
     - tmux
     - tree
     - vim
