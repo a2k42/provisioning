@@ -31,6 +31,7 @@
     - a2k42.leisure.modelling
     - a2k42.leisure.music
     - a2k42.system.device
+    - a2k42.security.gpg
 
 - name: Configure Servers
   hosts:
