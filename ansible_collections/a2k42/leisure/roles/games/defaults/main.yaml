@@ -1,1 +1,4 @@
-games_user_name: leisure
+---
+games_insurgency_install: .var/app/com.valvesoftware.Steam
+games_insurgency_config: .steam/steam/steamapps/common/insurgency2/insurgency/cfg
+games_user_name: "{{ leisure_user_name }}"

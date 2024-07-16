@@ -1,0 +1,12 @@
+---
+- name: Copy Insurgency config files
+  copy:
+    src: "{{ item }}"
+    dest: "/home/{{ games_user_name }}/{{ games_insurgency_install }}/{{ games_insurgency_config }}"
+    mode: 0754
+    owner: "{{ games_user_name }}"
+    group: "{{ games_user_name }}"
+  with_items:
+    - autoexec.cfg
+
+

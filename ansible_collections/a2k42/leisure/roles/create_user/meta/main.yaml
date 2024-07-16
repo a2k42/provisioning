@@ -1,0 +1,7 @@
+---
+dependencies:
+  - role: a2k42.desktop.desktop_user
+    vars:
+      desktop_user_name: "{{ leisure_user_name }}"
+      desktop_user_fullname: "{{ leisure_user_fullname }}"
+      desktop_user_password: "{{ leisure_user_password }}"
