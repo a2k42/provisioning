@@ -1,0 +1,8 @@
+---
+- name: Ensure Ansible is Installed
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - ansible
+    - ansible-lint
