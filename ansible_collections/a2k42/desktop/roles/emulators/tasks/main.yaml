@@ -1,0 +1,11 @@
+---
+- name: Ensure Terminal Emulators Installed
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - konsole
+    - gnome-terminal
+    - alacritty
+    - xterm

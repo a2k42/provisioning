@@ -4,4 +4,5 @@ dependencies:
   - role: a2k42.desktop.creative
   - role: a2k42.desktop.default_target
   - role: a2k42.desktop.dev
+  - role: a2k42.desktop.emulators
   - role: a2k42.desktop.research
