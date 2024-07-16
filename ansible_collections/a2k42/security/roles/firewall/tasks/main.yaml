@@ -13,12 +13,13 @@
         logging: 'on'
       notify: Reload ufw
 
-    - name: Limit ssh
+    - name: Open Firewall for SSH
       community.general.ufw:
         rule: limit
         port: ssh
         proto: tcp
       notify: Reload ufw
+      when: sshd_state == 'present'
 
     - name: Disable IP6
       ansible.builtin.lineinfile:
