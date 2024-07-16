@@ -5,7 +5,7 @@
   ansible.builtin.file:
     path: "/mnt/{{ item.name | trim }}"
     state: directory
-    mode: "0774"
+    mode: "0755"
   loop: "{{ device_ }}"
 
 - name: Setup crypttab
@@ -31,38 +31,25 @@
     state: present
   loop: "{{ device_ }}"
 
-  # loop:
-  #   - "/dev/mapper/backup /mnt/backup ext4 "
-  #   - "/dev/mapper/media  /mnt/media  ext4 "
-    # - "LABEL=Ventoy       /mnt/usb    exfat"
+- name: Ensure additional mountpoints exist
+  become: true
+  ansible.builtin.file:
+    path: "/mnt/{{ item | trim }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - snapshot
+    - usb
 
-# .dotfiles + stow replace these 3 tasks
-# - name: Ensure local bin directory exists
-#   ansible.builtin.file:
-#     path: "{{ ansible_user_dir }}/.local/bin/"
-#     state: directory
-#     mode: "0755"
+- name: Add additional devices to fstab
+  become: true
+  ansible.builtin.lineinfile:
+    dest: /etc/fstab
+    regex: "^LABEL=Ventoy"
+    line: "^LABEL=Ventoy       /mnt/usb    exfat {{ device_fstab_options }}  0  0"
+    backup: true
+    state: present
 
-# - name: Install backup script
-#   ansible.builtin.template:
-#     src: backup.sh.j2
-#     dest: "{{ ansible_user_dir }}/.local/bin/backup"
-#     mode: "0770"
-
-# - name: Copy .ignore file
-#   ansible.builtin.copy:
-#     src: .ignore
-#     dest: "{{ ansible_user_dir }}/"
-#     mode: "0644"
-#   become: false
   # archlinux docs suggest nofail option only works with keyfiles, could fail waiting for passphrase in crypttab
   # x-systemd.device-timeout=3 was causing timeout (I can't type passphrase that quick) but didn't on old system (default 90s)
   # use timeout with nofail,auto - here we don't need it
-
-# - name: Configure Cron Backups
-#   become: no
-#   ansible.builtin.cron:
-#     name: "run backup"
-#     minute: "35"
-#     job: "mountpoint -q /mnt/backup && {{ ansible_user_dir }}/.local/bin/backup 2>&1 | logger -t backup"
-#     state: "{{ state }}"

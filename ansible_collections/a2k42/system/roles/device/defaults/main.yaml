@@ -6,4 +6,4 @@ device_:
     fs: ext4
 
 device_crypt_options: "luks,nofail"
-device_fstab_options: "noatime,users,exec,nofail,x-systemd.device-timeout=100ms,x-systemd.automount,x-systemd.idle-timeout=20min"
+device_fstab_options: "noatime,users,exec,nofail,x-systemd.device-timeout=500ms,x-systemd.automount,x-systemd.idle-timeout=20min"
