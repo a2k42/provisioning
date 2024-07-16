@@ -16,12 +16,12 @@
 - name: Copy GPG Config Files
   ansible.builtin.copy:
     src: gpg-agent.conf
-    dest: ~/.gnupg/
+    dest: "{{ ansible_user_dir }}/.gnupg/"
     mode: "0640"
 
 - name: Ensure SSHControl
   ansible.builtin.lineinfile:
-    dest: ~/.gnupg/sshcontrol
+    dest: "{{ ansible_user_dir }}/.gnupg/sshcontrol"
     line: "# Find the authorization [A] keygrip with `gpg -K --with-keygrip` and add here"
     create: true
     mode: "0640"
@@ -34,4 +34,4 @@
       export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
       gpgconf --launch gpg-agent
     marker: "# {mark} GPG AGENT"
-    dest: "~/.bashrc"
+    dest: "{{ ansible_user_dir }}/.bashrc"

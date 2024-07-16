@@ -1,5 +1,6 @@
 ---
 dependencies:
+  - role: a2k42.developer.ansible
   - role: a2k42.developer.authoring
   - role: a2k42.developer.git
   - role: a2k42.developer.haskell

@@ -25,7 +25,7 @@ First, create a password file outside of this repository
 ```bash
 touch $HOME/ansible_vault_pass.txt
 
-export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/ansible_vault_pass.txt
+export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/Source/ansible_vault_pass.txt
 ```
 
 Then use the following ansible command to manage secret files.
