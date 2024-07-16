@@ -3,7 +3,7 @@
   become: true
   ansible.builtin.user:
     name: "{{ desktop_user_name }}"
-    comment: User
+    comment: "{{ desktop_user_fullname }}"
     password: "{{ desktop_user_password }}"
     update_password: "on_create"
     groups: users,audio,dip,video,plugdev,users,netdev,bluetooth
