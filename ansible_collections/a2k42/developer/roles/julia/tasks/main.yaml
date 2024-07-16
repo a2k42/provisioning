@@ -37,11 +37,3 @@
     src: startup.jl
     dest: "{{ ansible_user_dir }}/.julia/config/"
     mode: "0644"
-
-- name: Add Julia Project Alias
-  ansible.builtin.lineinfile:
-    path: ~/.bash_aliases
-    regex: "^alias jp="
-    line: "alias jp='julia --project=. --optimize=0'"
-    mode: "0644"
-    create: true
