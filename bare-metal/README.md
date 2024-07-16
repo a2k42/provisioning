@@ -6,6 +6,12 @@ https://www.debian.org/releases/bookworm/amd64/apbs04.en.html
 
 https://salsa.debian.org/installer-team/debian-installer/-/blob/master/doc/devel/partman-auto-recipe.txt
 
+## Validation
+
+```bash
+debconf-set-selections -c <path-to-preseed-file>
+```
+
 ## Minimal
 
 This is the most basic configuration which gets through the auto-installer without prompting for any answers.

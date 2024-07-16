@@ -3,9 +3,10 @@
         {
             "image": "/debian/debian-12.5.0-amd64-DVD-1.iso",
             "template": [
-                "/ventoy/script/laptop-preseed.cfg"
+                "/ventoy/laptop-preseed.cfg",
+                "/ventoy/desktop-preseed.cfg"
             ],
-            "autosel": 1,
+            "autosel": 2,
             "timeout": 30
         }
     ]
