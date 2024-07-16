@@ -1,0 +1,4 @@
+---
+ansible_user: test
+ansible_become_pass: "{{ virtual_sudo_password }}"
+sshd_state: present

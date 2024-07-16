@@ -1,42 +1,41 @@
 ---
 - name: Common tasks
-  hosts:
-    - all
-
+  hosts: all
   pre_tasks:
     - name: Update APT
       become: true
       ansible.builtin.import_role:
         name: a2k42.misc.update
-
   roles:
     - a2k42.misc.debug
     - a2k42.security.firewall
     - a2k42.security.clamav
     - a2k42.system.bundle
     - a2k42.system.backports
+
+- name: Configure Virtual Machines
+  hosts: virtual
+  roles:
+    - a2k42.security.sshd
+
+- name: Configure Desktops
+  hosts:
+    - desktops
+    - v_desktops
+    - local_desktop
+  roles:
     - a2k42.developer.bundle
-
-- name: Configure Servers
-  hosts: vservers
-  roles:
-    - a2k42.system.device
-
-- name: Configure Desktop
-  hosts: vdesktops
-  roles:
     - a2k42.desktop.bundle
+#     - a2k42.desktop.kde
     - a2k42.leisure.games
     - a2k42.leisure.modelling
     - a2k42.leisure.music
+    - a2k42.system.device
 
-- name: Configure Laptop
-  hosts: laptop
+- name: Configure Servers
+  hosts:
+    - servers
+    - v_servers
+    - local_server
   roles:
-    - a2k42.desktop.bundle
     - a2k42.misc.debug
-
-- name: Configure Desktop
-  hosts: desktop
-  roles:
-    - a2k42.developer.texlive

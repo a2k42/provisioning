@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ansible-playbook --limit local --ask-become-pass playbook.yaml

@@ -5,6 +5,3 @@
 ansible_user=vagrant
 #  ansible_ssh_port=2891       # ip set with private "host-only" network
 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
-
-[all:vars]
-git_user_email=change_me@example.com

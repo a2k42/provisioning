@@ -1,6 +1,12 @@
-[local]
-localhost
+[all_local]
+localdesktop    # fake alias
+localserver     # fake alias
 
-[local:vars]
+[all_local:vars]
 ansible_connection=local
-ansible_user=a2k42
+
+[local_desktop]
+localdesktop    # fake alias
+
+[local_server]
+localserver     # fake alias
