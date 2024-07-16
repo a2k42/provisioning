@@ -1,4 +1,5 @@
 ---
 dependencies:
   - role: a2k42.system.mdns
+  - role: a2k42.system.tmux
   - role: a2k42.system.utils

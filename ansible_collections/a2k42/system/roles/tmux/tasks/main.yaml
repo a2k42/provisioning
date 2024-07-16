@@ -1,0 +1,13 @@
+---
+- name: Ensure Tmux Installed
+  ansible.builtin.apt:
+    name: tmux
+    state: present
+
+# - name: Ensure Tmux Plugin Manager
+#   ansible.builtin.git:
+#     repo: "https://github.com/tmux-plugins/tpm"
+#     dest: "{{ ansible_user_dir }}/.tmux/plugins/tpm"
+#     update: false
+
+# - name: Ensure Nerd Fonts Installed
