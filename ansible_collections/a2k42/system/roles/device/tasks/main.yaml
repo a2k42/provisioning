@@ -19,6 +19,7 @@
     create: true
     mode: "0644"
   loop: "{{ device_ }}"
+  notify: Reload Daemon
 
 # https://www.freedesktop.org/software/systemd/man/systemd.mount.html
 - name: Setup fstab for crypttab
@@ -30,6 +31,7 @@
     backup: true
     state: present
   loop: "{{ device_ }}"
+  notify: Reload Daemon
 
 - name: Ensure additional mountpoints exist
   become: true
@@ -49,6 +51,7 @@
     line: "^LABEL=Ventoy       /mnt/usb    exfat {{ device_fstab_options }}  0  0"
     backup: true
     state: present
+  notify: Reload Daemon
 
   # archlinux docs suggest nofail option only works with keyfiles, could fail waiting for passphrase in crypttab
   # x-systemd.device-timeout=3 was causing timeout (I can't type passphrase that quick) but didn't on old system (default 90s)
