@@ -1,0 +1,2 @@
+---
+shell_user_dir: "{{ ansible_user_dir }}"

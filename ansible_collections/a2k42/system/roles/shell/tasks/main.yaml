@@ -1,0 +1,27 @@
+---
+- name: Ensure Bash Customisations
+  ansible.builtin.blockinfile:
+    path: "{{ shell_user_dir }}/.bashrc"
+    marker_begin: "if [ \"$color_prompt\" = yes ]; then"
+    block: |
+      # Color prompt
+          if [ -f ~/.bash_colours ] && [ -f ~/.show-git.sh ]; then
+              source ~/.bash_colours
+              source ~/.show-git.sh
+              PS1="${light_magenta}\u@\h${gray}:${cyan}\W${yellow}"'$(git_prompt)'"${reset}$ "
+          else
+              PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+          fi
+      else
+          PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+      fi
+    marker_end: "unset color_prompt force_color_prompt"
+    marker: "{mark}"
+
+- name: Remove aliases"
+  ansible.builtin.blockinfile:
+    path: "{{ shell_user_dir }}/.bashrc"
+    marker_begin: "# enable color support of ls and also add handy aliases"
+    block: ""
+    marker_end: "# See /usr/share/doc/bash-doc/examples in the bash-doc package."
+    marker: "{mark}"
