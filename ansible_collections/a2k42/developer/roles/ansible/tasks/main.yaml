@@ -1,5 +1,6 @@
 ---
 - name: Ensure Ansible is Installed
+  become: true
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present

@@ -28,10 +28,6 @@
   when: julia_use_juliaup
   changed_when: not 'No Changes' in result.stderr
 
-- name: Show result
-  ansible.builtin.debug:
-    msg: "{{ result.stderr }}"
-
 - name: Startup config
   ansible.builtin.copy:
     src: startup.jl
