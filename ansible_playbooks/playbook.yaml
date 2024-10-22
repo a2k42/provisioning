@@ -8,8 +8,7 @@
         name: a2k42.misc.update
   roles:
     - a2k42.misc.debug
-    - a2k42.security.firewall
-    - a2k42.security.clamav
+    - a2k42.security.bundle
     - a2k42.system.bundle
     - a2k42.system.backports
 
@@ -26,12 +25,8 @@
   roles:
     - a2k42.developer.bundle
     - a2k42.desktop.bundle
-#     - a2k42.desktop.kde
-    - a2k42.leisure.games
-    - a2k42.leisure.modelling
-    - a2k42.leisure.music
+#    - a2k42.leisure.bundle
     - a2k42.system.device
-    - a2k42.security.gpg
 
 - name: Configure Servers
   hosts:
