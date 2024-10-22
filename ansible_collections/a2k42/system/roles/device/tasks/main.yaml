@@ -48,7 +48,7 @@
   ansible.builtin.lineinfile:
     dest: /etc/fstab
     regex: "^LABEL=Ventoy"
-    line: "^LABEL=Ventoy       /mnt/usb    exfat {{ device_fstab_options }}  0  0"
+    line: "LABEL=Ventoy       /mnt/usb    exfat {{ device_fstab_options }}  0  0"
     backup: true
     state: present
   notify: Reload Daemon

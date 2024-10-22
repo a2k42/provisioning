@@ -8,7 +8,7 @@
           if [ -f ~/.bash_colours ] && [ -f ~/.show-git.sh ]; then
               source ~/.bash_colours
               source ~/.show-git.sh
-              PS1="${light_magenta}\u@\h${gray}:${cyan}\W${yellow}"'$(git_prompt)'"${reset}$ "
+              PS1="${light_magenta}\u@\h${gray}:${cyan}\W${light_yellow}"'$(git_prompt)'"${reset}$ "
           else
               PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
           fi

@@ -1,0 +1,20 @@
+- name: Ensure Pipewire and Firmware Installed
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - firmware-linux-nonfree
+    - wireplumber
+    - pipewire
+    - pipewire-audio  # meta package
+    # - pipewire-alsa
+    # - pipewire-pulse
+    # - pipewire-jack
+    # - libspa-0.2-bluetooth
+
+    # - bluez
+    # - firmware-realtek
+    # - firmware-misc-nonfree
+
+  # https://wiki.debian.org/PipeWire
