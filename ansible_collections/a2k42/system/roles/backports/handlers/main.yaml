@@ -1,9 +1,16 @@
 ---
 - name: Reboot
-  become: true
-  ansible.builtin.reboot:
-    msg: "Reboot initiated by Ansible for kernel update"
-    connect_timeout: 5
-    reboot_timeout: 600
-    pre_reboot_delay: 0
-    post_reboot_delay: 30
+  block:
+    - name: Reboot
+      become: true
+      ansible.builtin.reboot:
+        msg: "Reboot initiated by Ansible for kernel update"
+        connect_timeout: 5
+        reboot_timeout: 600
+        pre_reboot_delay: 0
+        post_reboot_delay: 30
+      when: ansible_connection != 'local'
+    - name: Request Reboot from user
+      when: ansible_connection == 'local'
+      ansible.builtin.fail:
+        msg: "Please reboot and run again.\n\n Kernel has been updated but ansible.builtin.reboot with local connection would reboot the control node."
