@@ -1,8 +1,10 @@
 ---
 - name: Ensure tools for certificate and password management
+  become: true
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
   loop:
     - libnss3-tools
     - whois
+    - openvpn

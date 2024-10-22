@@ -1,0 +1,13 @@
+---
+- name: "Ensure Open SSH Server {{ sshd_state }}"
+  ansible.builtin.apt:
+    name: openssh-server
+    state: "{{ sshd_state }}"
+
+- name: Open Firewall
+  community.general.ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+  notify: Reload ufw
+  when: sshd_state == 'present'

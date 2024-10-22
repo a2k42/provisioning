@@ -2,6 +2,10 @@
 - name: Restart ClamAV
   become: true
   ansible.builtin.systemd:
-    name: clamav-daemon
+    name: "{{ item.name }}"
     enabled: true
     state: restarted
+  loop:
+    - name: clamav-daemon.service
+    - name: clamav-freshclam.service
+    - name: clamav-clamonacc.service
