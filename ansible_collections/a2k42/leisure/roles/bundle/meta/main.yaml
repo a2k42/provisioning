@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: a2k42.leisure.games
+  - role: a2k42.leisure.modelling
+  - role: a2k42.leisure.music

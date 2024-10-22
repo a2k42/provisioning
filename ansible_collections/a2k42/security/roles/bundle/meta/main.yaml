@@ -1,0 +1,7 @@
+---
+dependencies:
+  - role: a2k42.security.clamav
+  - role: a2k42.security.firewall
+  - role: a2k42.security.gpg
+  - role: a2k42.security.misc
+# do not bundle sshd
