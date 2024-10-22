@@ -6,3 +6,4 @@ dependencies:
   - role: a2k42.desktop.dev
   - role: a2k42.desktop.emulators
   - role: a2k42.desktop.research
+  - role: a2k42.desktop.gui

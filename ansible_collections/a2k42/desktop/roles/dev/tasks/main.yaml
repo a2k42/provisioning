@@ -13,8 +13,6 @@
       state: present
     - name: com.google.AndroidStudio
       state: absent
-    - name: com.visualstudio.code # unoffical version - warning
-      state: absent
 
 - name: Ensure Code Installed
   ansible.builtin.import_tasks: code.yaml

@@ -1,0 +1,14 @@
+---
+- name: Ensure KDE Desktop Installed
+  become: true
+  ansible.builtin.apt:
+    name: plasma-workspace-wayland
+    state: present
+
+# - name: Ensure Packages Installed
+#   become: true
+#   ansible.builtin.apt:
+#     name: "{{ item }}"
+#     state: present
+#   loop:
+#     - okular # pdf viewer

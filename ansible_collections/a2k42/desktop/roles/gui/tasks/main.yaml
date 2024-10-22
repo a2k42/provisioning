@@ -1,0 +1,31 @@
+- name: Install GUI Apps for KDE
+  ansible.builtin.import_tasks: kde.yaml
+
+- name: Install GUI Apps for Gnome
+  ansible.builtin.import_tasks: gnome.yaml
+
+- name: Ensure home folders not created
+  ansible.builtin.lineinfile:
+    path: ~/.config/user-dirs.dirs
+    regex: "^{{ item }}"
+    line: "{{ item }}\"$HOME\""
+    mode: "0600"
+    create: true
+  loop:
+    # - XDG_DESKTOP_DIR=
+    - XDG_DOWNLOAD_DIR=
+    - XDG_TEMPLATES_DIR=
+    - XDG_DOCUMENTS_DIR=
+    - XDG_MUSIC_DIR=
+    - XDG_PICTURES_DIR=
+    - XDG_VIDEOS_DIR=
+    - XDG_PUBLICSHARE_DIR=
+
+
+- name: Ensure Packages Installed
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - evince # pdf viewer

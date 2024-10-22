@@ -1,4 +1,21 @@
 ---
+# - name: Ensure contrib sources
+#   become: true
+#   ansible.builtin.apt_repository:
+#     repo: "{{ item }}"
+#     state: present
+#   loop:
+#     - "deb http://mirror.ox.ac.uk/debian bookworm main contrib non-free-firmware"
+#     - "deb-src http://mirror.ox.ac.uk/debian bookworm main contrib non-free-firmware"
+
+- name: Ensure DVD CSS
+  become: true
+  ansible.builtin.apt:
+    name: libdvd-pkg
+    update_cache: true
+    autoclean: true
+    state: present
+
 - name: Install Flatpak Packages
   become: true
   community.general.flatpak:

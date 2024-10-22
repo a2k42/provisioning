@@ -3,6 +3,11 @@
   become: true
   ansible.builtin.apt:
     deb: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
-    # deb: https://vscode.download.prss.microsoft.com/dbazure/download/stable/5437499feb04f7a586f677b155b039bc2b3669eb/code_1.90.2-1718751586_amd64.deb
     state: present
     autoclean: true
+
+# - name: Install VCSE
+#   ansible.builtin.shell: "pnpm install --global @vscode/vsce"
+#   args:
+#     executable: /bin/bash
+#   changed_when: "'added 1 package' in pnpm.stdout"

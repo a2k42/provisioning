@@ -1,0 +1,6 @@
+---
+- name: Ensure Gnome Desktop Installed
+  become: true
+  ansible.builtin.apt:
+    name: gnome-shell
+    state: present
