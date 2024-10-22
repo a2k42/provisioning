@@ -1,13 +1,34 @@
 ---
 - name: Ensure Tmux Installed
+  become: true
   ansible.builtin.apt:
     name: tmux
     state: present
 
-# - name: Ensure Tmux Plugin Manager
-#   ansible.builtin.git:
-#     repo: "https://github.com/tmux-plugins/tpm"
-#     dest: "{{ ansible_user_dir }}/.tmux/plugins/tpm"
-#     update: false
+# - name: Check If Exists
+#   ansible.builtin.stat:
+#     path: "{{ ansible_user_dir }}/.tmux/plugins/tpm"
+#   register: tpm_dir
+#   changed_when: false
 
-# - name: Ensure Nerd Fonts Installed
+- name: Ensure Tmux Plugin Manager
+  ansible.builtin.git:
+    repo: "https://github.com/tmux-plugins/tpm"
+    version: v3.1.0
+    dest: "{{ ansible_user_dir }}/.tmux/plugins/tpm"
+    # update: true
+  # when: not tpm_dir.stat.exists
+
+- name: Create Font Directory
+  become: true
+  ansible.builtin.file:
+    path: /usr/share/fonts/FiraMono/
+    state: directory
+    mode: "0755"
+
+- name: Ensure Nerd Fonts Installed
+  become: true
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraMono.zip
+    dest: /usr/share/fonts/FiraMono/
+    remote_src: true
