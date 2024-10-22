@@ -8,30 +8,55 @@
     - gpg
     - gpg-agent
 
-- name: Set safe permissions
-  ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.gnupg/"
-    mode: "0700"
+- name: Check if .gnupg exists
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.gnupg"
+  register: gnupg_dir
+  changed_when: false
 
-- name: Copy GPG Config Files
-  ansible.builtin.copy:
-    src: gpg-agent.conf
-    dest: "{{ ansible_user_dir }}/.gnupg/"
-    mode: "0640"
+- name: Configure GPG
+  when: gnupg_dir.stat.exists
+  block:
+    - name: Set safe permissions
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir }}/.gnupg/"
+        mode: "0700"
+        state: directory
 
-- name: Ensure SSHControl
+    - name: Copy GPG Config Files
+      ansible.builtin.copy:
+        src: gpg-agent.conf
+        dest: "{{ ansible_user_dir }}/.gnupg/"
+        mode: "0640"
+
+    - name: Ensure SSHControl
+      ansible.builtin.lineinfile:
+        dest: "{{ ansible_user_dir }}/.gnupg/sshcontrol"
+        line: "# Find the authorization [A] keygrip with `gpg -K --with-keygrip` and add here"
+        create: true
+        mode: "0640"
+        backup: true
+
+    - name: Ensure GPG Agent Launched
+      ansible.builtin.blockinfile:
+        block: |
+          export GPG_TTY=$(tty)
+          export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+          gpgconf --launch gpg-agent
+        marker: "# {mark} GPG AGENT"
+        dest: "{{ ansible_user_dir }}/.bashrc"
+
+    - name: Clear Env Variable
+      ansible.builtin.lineinfile:
+        dest: "{{ ansible_user_dir }}/.bashrc"
+        regexp: "^export GNUPGHOME"
+        state: absent
+
+- name: Prevent Creation of .gnupg
+  when: not gnupg_dir.stat.exists
   ansible.builtin.lineinfile:
-    dest: "{{ ansible_user_dir }}/.gnupg/sshcontrol"
-    line: "# Find the authorization [A] keygrip with `gpg -K --with-keygrip` and add here"
-    create: true
-    mode: "0640"
-    backup: true
-
-- name: Ensure GPG Agent Launched
-  ansible.builtin.blockinfile:
-    block: |
-      export GPG_TTY=$(tty)
-      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-      gpgconf --launch gpg-agent
-    marker: "# {mark} GPG AGENT"
     dest: "{{ ansible_user_dir }}/.bashrc"
+    regexp: "^export GNUPGHOME"
+    line: "export GNUPGHOME=/dev/null"
+    mode: "0640"
+    state: present
